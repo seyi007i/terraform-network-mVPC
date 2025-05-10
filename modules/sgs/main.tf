@@ -2,7 +2,7 @@
 resource "aws_security_group" "allow_database" {
   name        = "allow_mysql"
   description = "Allow MySQL inbound traffic"
-  vpc_id      = var.vpc_id 
+  vpc_id      = var.vpc_id_a 
 
   ingress {
     from_port   = 3306 
@@ -26,7 +26,7 @@ resource "aws_security_group" "allow_database" {
 resource "aws_security_group" "allow_backend" {
   name        = "allow_backend"
   description = "Allow backend inbound traffic"
-  vpc_id      = var.vpc_id 
+  vpc_id      = var.vpc_id_a
 
   ingress {
     from_port   = 22
@@ -63,7 +63,7 @@ resource "aws_security_group" "allow_backend" {
 resource "aws_security_group" "allow_frontend" {
   name        = "allow_frontend"
   description = "Allow frontend inbound traffic"
-  vpc_id      = var.vpc_id 
+  vpc_id      = var.vpc_id_a
 
   ingress {
     from_port   = 22
@@ -87,23 +87,23 @@ resource "aws_security_group" "allow_frontend" {
   }
 }
 
-resource "aws_security_group" "bastion_sg" {
+resource "aws_security_group" "allow_bastion" {
   name        = "bastion-sg"
   description = "Allow SSH and OpenVPN"
-  vpc_id      = var.vpc_id
+  vpc_id      = var.vpc_id_b
 
   ingress {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["YOUR_IP/32"]
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   ingress {
     from_port   = 1194
     to_port     = 1194
     protocol    = "udp"
-    cidr_blocks = ["YOUR_IP/32"]
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   egress {

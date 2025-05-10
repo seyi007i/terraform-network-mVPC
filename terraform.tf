@@ -12,7 +12,7 @@ terraform {
     bucket         = "tf-backend-bucket-080525"
     key            = "tf_state"
     region         = "us-east-1"
-    dynamodb_table = "terraform-lock"
+    dynamodb_table = "terraform-locks"
     encrypt        = true
   }
 

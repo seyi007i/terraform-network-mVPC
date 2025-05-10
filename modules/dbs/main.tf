@@ -1,8 +1,8 @@
 
-data "hcp_vault_secrets_app" "db_secrets" {
-  app_name = "retrunBuildApp"
-
-}
+# data "hcp_vault_secrets_app" "db_secrets" {
+#  app_name = "retrunBuildApp"
+#
+# }
 
 
 resource "aws_db_subnet_group" "database_subnet_group" {
@@ -17,8 +17,8 @@ resource "aws_db_instance" "db_1" {
   engine               = "mysql"
   engine_version       = "8.0"
   instance_class       = "db.t3.micro"
-  username             = data.hcp_vault_secrets_app.db_secrets.secrets["db_username"]
-  password             = data.hcp_vault_secrets_app.db_secrets.secrets["db_password"]
+  username             =  "admin"     #data.hcp_vault_secrets_app.db_secrets.secrets["db_username"]
+  password             =   "password123"    #data.hcp_vault_secrets_app.db_secrets.secrets["db_password"]
   parameter_group_name = "default.mysql8.0"
   skip_final_snapshot  = true
 
@@ -36,8 +36,8 @@ resource "aws_db_instance" "db_2" {
   engine               = "mysql"
   engine_version       = "8.0"
   instance_class       = "db.t3.micro"
-  username             = data.hcp_vault_secrets_app.db_secrets.secrets["db_username"]
-  password             = data.hcp_vault_secrets_app.db_secrets.secrets["db_password"]
+  username             =  "admin"    #data.hcp_vault_secrets_app.db_secrets.secrets["db_username"]
+  password             =   "password123"       #data.hcp_vault_secrets_app.db_secrets.secrets["db_password"]
   parameter_group_name = "default.mysql8.0"
   skip_final_snapshot  = true
 

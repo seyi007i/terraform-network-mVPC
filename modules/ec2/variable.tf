@@ -15,16 +15,20 @@ variable "private_subnets_backend_sg" {
   description = "Private subnet backend sg"
 }
 
+variable "public_subnets_bastion_sg" {
+  description = "Public subnet frontend sg"
+}
+
+variable "public_subnets_bastion" {
+  description = "Private subnet backend sg"
+}
 
 variable "tf_tag" {
     type = bool
     default = true         
     description = "Terraform identifier"
-  
 }
 
-
-
-variable "key" {
+variable "key_name" {
   description = "Compute access key"
 }

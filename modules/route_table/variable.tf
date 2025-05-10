@@ -1,9 +1,19 @@
-variable "vpc_id" {
+variable "vpc_id_a" {
     description = "VPC ID from the VPC module"
     type        = string
 }
 
-variable "vpc_cidr" {
+variable "vpc_id_b" {
+    description = "VPC ID from the VPC module"
+    type        = string
+}
+
+variable "vpc_cidr_a" {
+    description = "VPC CIDR from the VPC module"
+    type        = string
+}
+
+variable "vpc_cidr_b" {
     description = "VPC CIDR from the VPC module"
     type        = string
 }
@@ -20,8 +30,16 @@ variable "private_subnets_database" {
   description = "Private subnet database"
 }
 
+variable "public_subnets_bastion" {
+  description = "Public subnet bastion"
+}
 
-variable "internet_gateway_id" {
+variable "internet_gateway_id_a" {
+  description = "Internet gateway ID"
+
+}
+
+variable "internet_gateway_id_b" {
   description = "Internet gateway ID"
 
 }

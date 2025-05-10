@@ -9,3 +9,7 @@ output "backend_sg_id" {
 output "frontend_sg_id" {
   value = aws_security_group.allow_frontend.id
 }
+
+output "bastion_sg_id" {
+  value = aws_security_group.allow_bastion.id
+}

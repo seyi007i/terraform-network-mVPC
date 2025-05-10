@@ -16,9 +16,9 @@ variable "vpc_cidr_a" {
   description = "vpc cidr"
 }
 
-ariable "vpc_cidr_b" {
+variable "vpc_cidr_b" {
   type    = string
-  # default = "10.0.0.0/16"     
+  # default = "10.1.0.0/16"     
   description = "vpc cidr"
 }
 

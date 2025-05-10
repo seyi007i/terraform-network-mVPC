@@ -20,7 +20,7 @@ data "aws_ami" "ubuntu" {
 resource "aws_launch_template" "frontend_launch_template" {
   image_id         = data.aws_ami.ubuntu.id
   instance_type = "t2.micro"
-  key_name = var.key.key_name
+  key_name = var.key_name.key_name
 
   user_data = base64encode(<<-EOF
               #!/bin/bash
@@ -65,7 +65,7 @@ resource "aws_autoscaling_group" "frontend_asg" {
 resource "aws_launch_template" "backend_launch_template" {
   image_id         = data.aws_ami.ubuntu.id
   instance_type = "t2.micro"
-  key_name = var.key.key_name
+  key_name = var.key_name.key_name
 
   user_data = base64encode( <<-EOF
               #!/bin/bash
@@ -123,12 +123,12 @@ data "aws_instances" "asg_backend_instances" {
 resource "aws_instance" "bastion" {
   ami                         = "ami-0a91cd140a1fc148a" # Ubuntu 20.04 LTS (region-dependent)
   instance_type               = "t2.micro"
-  subnet_id                   = var.public_subnet_id
-  vpc_security_group_ids      = [aws_security_group.bastion_sg.id]
+  subnet_id                   = var.public_subnets_bastion.id
+  vpc_security_group_ids      = [var.public_subnets_bastion_sg]
   associate_public_ip_address = true
-  key_name                    = var.key_name
+  key_name                    = var.key_name.key_name
 
-  user_data = file("${path.module}/scripts/install-openvpn.sh")
+  user_data = file("./script/openvpn.sh")
 
   tags = {
     Name = "BastionOpenVPN"

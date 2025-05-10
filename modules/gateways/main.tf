@@ -1,6 +1,13 @@
 
-resource "aws_internet_gateway" "internet_gateway" {
-  vpc_id = var.vpc_id
+resource "aws_internet_gateway" "internet_gateway_a" {
+  vpc_id = var.vpc_id_a
+  tags = {
+    Name = var.igw_tag
+  }
+}
+
+resource "aws_internet_gateway" "internet_gateway_b" {
+  vpc_id = var.vpc_id_b
   tags = {
     Name = var.igw_tag
   }
@@ -9,7 +16,7 @@ resource "aws_internet_gateway" "internet_gateway" {
 
 resource "aws_eip" "nat_gateway_eip" {
   domain     = var.nat_domain
-  depends_on = [aws_internet_gateway.internet_gateway]
+  depends_on = [aws_internet_gateway.internet_gateway_a]
   tags = {
     Name = var.nat_eip_tag
   }

@@ -3,7 +3,7 @@ data "aws_availability_zones" "available" {}
 
 resource "aws_subnet" "public_subnets_frontend" {
   for_each          = var.public_subnets_frontend_name
-  vpc_id            = var.vpc_id
+  vpc_id            = var.vpc_id_a
   cidr_block        = var.vpc_cidr_public_subnets_frontend[each.value - 1]
   availability_zone = var.subnets_az[each.value - 1]
 
@@ -16,7 +16,7 @@ resource "aws_subnet" "public_subnets_frontend" {
 
 resource "aws_subnet" "private_subnets_backend" {
   for_each          = var.private_subnets_backend_name
-  vpc_id            = var.vpc_id
+  vpc_id            = var.vpc_id_a
   cidr_block        = var.vpc_cidr_private_subnets_backend[each.value - 1]
   availability_zone = var.subnets_az[each.value - 1]
 
@@ -28,7 +28,7 @@ resource "aws_subnet" "private_subnets_backend" {
 
 resource "aws_subnet" "private_subnets_database" {
   for_each          = var.private_subnets_database_name
-  vpc_id            = var.vpc_id
+  vpc_id            = var.vpc_id_a
   cidr_block        = var.vpc_cidr_private_subnets_database[each.value - 1]
   availability_zone = var.subnets_az[each.value - 1]
 
@@ -38,4 +38,15 @@ resource "aws_subnet" "private_subnets_database" {
   }
 }
 
+resource "aws_subnet" "public_subnets_bastion" {
+  
+  vpc_id            = var.vpc_id_b
+  cidr_block        = var.vpc_cidr_public_subnets_bastion
+  availability_zone = var.subnets_az[1]
+
+  tags = {
+    Name      = "bastion subnet"
+    Terraform = "true"
+  }
+}
 

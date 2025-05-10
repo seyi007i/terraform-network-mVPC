@@ -1,4 +1,9 @@
-variable "vpc_id" {
+variable "vpc_id_a" {
+    description = "VPC ID from the VPC module"
+    type        = string
+}
+
+variable "vpc_id_b" {
     description = "VPC ID from the VPC module"
     type        = string
 }

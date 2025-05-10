@@ -9,3 +9,7 @@ output "private_subnets_backend" {
 output "private_subnets_database" {
   value = aws_subnet.private_subnets_database
 }
+
+output "public_subnets_bastion" {
+  value = aws_subnet.public_subnets_bastion
+}

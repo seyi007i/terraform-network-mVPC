@@ -1,4 +1,9 @@
-variable "vpc_id" {
+variable "vpc_id_a" {
+    description = "VPC ID from the VPC module"
+    type        = string
+}
+
+variable "vpc_id_b" {
     description = "VPC ID from the VPC module"
     type        = string
 }
@@ -68,6 +73,11 @@ variable "vpc_cidr_private_subnets_database" {
     # default = ["10.0.224.0/20", "10.0.240.0/20" ] 
 }
 
+variable "vpc_cidr_public_subnets_bastion" {
+    description = "VPC CIDRs from the VPC module for private bastion subnets"
+    type        = string
+    # default = ["10.0.224.0/20", "10.0.240.0/20" ] 
+}
 
 
 variable "tf_tag" {

@@ -1,12 +1,13 @@
-variable "vpc_id" {
+variable "vpc_id_a" {
     description = "VPC ID from the VPC module"
     type        = string
 }
 
-variable "vpc_cidr" {
-    description = "VPC CIDR from the VPC module"
+variable "vpc_id_b" {
+    description = "VPC ID from the VPC module"
     type        = string
 }
+
 
 variable "public_subnets_frontend" {
   description = "Public subnet frontend"
