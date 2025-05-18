@@ -76,6 +76,13 @@ resource "aws_route_table_association" "private_route_table_database_assoc" {
   subnet_id      = each.value.id
 }
 
+resource "aws_route_table_association" "public_route_table_bastion_assoc" {
+  depends_on     = [var.public_subnets_bastion]
+  route_table_id = aws_route_table.public_route_table_bastion.id
+  #for_each       = var.public_subnets_bastion
+  subnet_id      = var.public_subnets_bastion.id
+}
+
 # --- VPC Peering Connection ---
 resource "aws_vpc_peering_connection" "peer" {
   vpc_id       = var.vpc_id_a

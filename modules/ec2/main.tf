@@ -121,7 +121,7 @@ data "aws_instances" "asg_backend_instances" {
 
 
 resource "aws_instance" "bastion" {
-  ami                         = "ami-0a91cd140a1fc148a" # Ubuntu 20.04 LTS (region-dependent)
+  ami                         = data.aws_ami.ubuntu.id # Ubuntu 20.04 LTS (region-dependent)
   instance_type               = "t2.micro"
   subnet_id                   = var.public_subnets_bastion.id
   vpc_security_group_ids      = [var.public_subnets_bastion_sg]
